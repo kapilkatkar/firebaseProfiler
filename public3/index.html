@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      input {
+        width: 100%;
+        padding: 12px;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      input[type="submit"] {
+        background-color: rgb(98, 98, 207);
+        color: white;
+        margin-top: 20px;
+        margin-bottom: 30px;
+      }
+
+      .container {
+        width: 50%;
+        padding: 20px;
+        border: 4px solid #ccc;
+        box-sizing: border-box;
+        margin: auto;
+        max-width: 500px;
+        background: white;
+        padding: 20px;
+      }
+
+      #check1,
+      #check2,
+      #check3,
+      #check4,
+      #check5 {
+        display: block;
+        position: relative;
+        margin: 6px;
+      }
+
+      .pass {
+        font-weight: 900;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Choose new password</h1>
+      <p>Almost done. Enter your new password and youre all set.</p>
+      <form onsubmit="return resetFun()">
+        <label for="passwords" class="pass">Create a password</label><br />
+        <input
+          type="password"
+          onkeypress="validationFun()"
+          id="password"
+          pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+          title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+          required
+        /><br />
+
+        <label for="psw" class="pass">Confirm new password</label><br />
+        <input type="password" id="resetPass" required />
+        <span id="err"> </span>
+
+        <div id="check">
+          <div id="check1">
+            <i class="fa fa-check-circle"></i>
+            <span>one lowercase character </span>
+          </div>
+          <div id="check2">
+            <i class="fa fa-check-circle"></i>
+            <span>one special character</span>
+          </div>
+          <div id="check3">
+            <i class="fa fa-check-circle"></i>
+            <span>one uppercase character</span>
+          </div>
+          <div id="check4">
+            <i class="fa fa-check-circle"></i>
+            <span>8 character minimumm</span>
+          </div>
+          <div id="check5">
+            <i class="fa fa-check-circle"></i> <span>one number</span>
+          </div>
+        </div>
+        <input type="submit" value="Reset Password" />
+      </form>
+    </div>
+
+    <script>
+      function validationFun() {
+        let text = document.getElementById("password").value;
+        if (text.match(/[a-z]/g)) {
+          document.getElementById("check1").style.color = "green";
+        } else {
+          document.getElementById("check1").style.color = "red";
+        }
+
+        if (text.match(/[^a-zA-Z0-9\-\/]/)) {
+          document.getElementById("check2").style.color = "green";
+        } else {
+          document.getElementById("check2").style.color = "red";
+        }
+
+        if (text.match(/[A-Z]/g)) {
+          document.getElementById("check3").style.color = "green";
+        } else {
+          document.getElementById("check3").style.color = "red";
+        }
+
+        if (text.length >= 8) {
+          document.getElementById("check4").style.color = "green";
+        } else {
+          document.getElementById("check4").style.color = "red";
+        }
+
+        if (text.match(/[0-9]/g)) {
+          document.getElementById("check5").style.color = "green";
+        } else {
+          document.getElementById("check5").style.color = "red";
+        }
+      }
+
+      function resetFun() {
+        let text = document.getElementById("password").value;
+        let b = document.getElementById("resetPass").value;
+        if (text != b) {
+          alert("pass is not matching.");
+        }
+      }
+    </script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="signup-container">
+        <form id="signUpForm">
+          <div class="name">
+            <input type="text" placeholder="First name" id="name" required />
+            <input type="text" placeholder="Surname" id="surName" required />
+          </div>
+          <input
+            required
+            type="text"
+            placeholder="Mobile number or email address"
+            id="mob-email"
+          />
+          <input
+            type="password"
+            placeholder="new password"
+            id="password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+            required
+          />
+          <div class="DOB">
+            <label for="DOB">date of Birth :</label>
+            <input type="date" id="date" required />
+          </div>
+          <label for="genders" class="genders">
+            genders :
+            <label for="male">Male</label>
+            <input type="radio" name="gender" value="male" required />
+            <label for="Female">Female</label>
+            <input type="radio" name="gender" value="Female" required />
+            <label for="others">others</label>
+            <input type="radio" name="gender" value="others" required />
+          </label>
+
+          <div class="button">
+            <button type="submit" id="signUp-btn">Sign Up</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

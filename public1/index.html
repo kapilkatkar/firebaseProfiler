@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Add an element to display Firebase-related output -->
+    <div id="output"></div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+      } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "AIzaSyDi41PPIiWcMEzJZ0tB6yHQF1KtPKTRalQ",
+        authDomain: "fir-profile-kapil.firebaseapp.com",
+        projectId: "fir-profile-kapil",
+        storageBucket: "fir-profile-kapil.appspot.com",
+        messagingSenderId: "960649716392",
+        appId: "1:960649716392:web:bfb3009e9be7aaaf5e589d",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      (async () => {
+        try {
+          const docRef = await addDoc(collection(db, "users"), {
+            first: "Alan",
+            middle: "Mathison",
+            last: "Turing",
+            born: 1912,
+          });
+
+          // Display a success message
+          const outputElement = document.getElementById("output");
+          outputElement.innerText = "Document written with ID: " + docRef.id;
+        } catch (e) {
+          console.error("Error adding document: ", e);
+        }
+      })();
+    </script>
+  </body>
+</html>
